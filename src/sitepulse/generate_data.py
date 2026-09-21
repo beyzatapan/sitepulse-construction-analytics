@@ -31,6 +31,8 @@ PROJECTS = [
         "planned_duration_days": 240,
         "start_date": "2026-01-05",
         "base_workers": 85,
+        "productivity_multiplier": 0.96,
+
     },
     {
         "project_id": "PRJ002",
@@ -41,6 +43,7 @@ PROJECTS = [
         "planned_duration_days": 210,
         "start_date": "2026-01-19",
         "base_workers": 55,
+        "productivity_multiplier": 1.08,
     },
     {
         "project_id": "PRJ003",
@@ -51,6 +54,7 @@ PROJECTS = [
         "planned_duration_days": 190,
         "start_date": "2026-02-02",
         "base_workers": 65,
+        "productivity_multiplier": 1.14,
     },
     {
         "project_id": "PRJ004",
@@ -60,7 +64,8 @@ PROJECTS = [
         "planned_budget_usd": 8_800_000,
         "planned_duration_days": 270,
         "start_date": "2026-01-12",
-        "base_workers": 105,
+        "base_workers": 65,
+        "productivity_multiplier": 1.14,
     },
     {
         "project_id": "PRJ005",
@@ -71,6 +76,7 @@ PROJECTS = [
         "planned_duration_days": 250,
         "start_date": "2026-02-09",
         "base_workers": 95,
+        "productivity_multiplier": 1.18,
     },
     {
         "project_id": "PRJ006",
@@ -81,6 +87,7 @@ PROJECTS = [
         "planned_duration_days": 230,
         "start_date": "2026-01-26",
         "base_workers": 90,
+        "productivity_multiplier": 1.12,
     },
 ]
 
@@ -335,7 +342,8 @@ def create_daily_operations_dataframe(
             )
 
             productivity_factor = (
-                weather_factor
+                project["productivity_multiplier"]
+                * weather_factor
                 * workforce_factor
                 * material_factor
                 * equipment_factor
